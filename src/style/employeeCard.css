@@ -1,0 +1,16 @@
+.employee_card{
+  max-width: 27rem;
+  background-color: rgb(235, 235, 235);
+  height: fit-content;
+  text-align: left;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 1rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.employee_card:last-child{
+  margin-bottom: 5rem;
+}
+
