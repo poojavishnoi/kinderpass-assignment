@@ -61,6 +61,9 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .signup-main-container{
+    min-width: 100%;
+  }
 
   .signup_container{
     display: block;
@@ -73,6 +76,12 @@
 
   .register_btn{
     margin: 0 0 5rem 0;
+  }
+
+  .signup_form{
+    flex-wrap: nowrap;
+    width: 100%;
+    max-height: none;
   }
 
   .signup_form input{
