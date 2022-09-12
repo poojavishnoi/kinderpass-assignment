@@ -17,10 +17,9 @@ export const employeeReducer = (state, { type, payload }) => {
         employee: [...state.employee,{...payload,id: toAddEmployeeId}],
       };
     case "DLT_EMP":
-
       return {
         ...state,
-        employee: [...state.employee.filter((ele) => ele.id === payload.toDeleteId)],
+        employee: [...state.employee.filter((ele) => ele.id !== payload)],
       };
       
     case "UPDATE":
