@@ -3,7 +3,7 @@ import { useEmployee } from "../context/employee-context";
 import { EmployeeCard } from "../components/EmployeeCard";
 import "../style/home.css";
 import EmployeeModal from "../components/EmployeeModal";
-import { Button } from "react-bootstrap";
+import {MdAddCircle} from 'react-icons/md'
 
 function Home() {
   const { employee } = useEmployee();
@@ -12,7 +12,6 @@ function Home() {
   
 
   const addEmployeeClickHandler = () => {
-    console.log("adding employee");
     setToEditEmployeeId(null)
     setToShowEmployeePopup(true)
     
@@ -22,7 +21,6 @@ function Home() {
 
   const setEmployeeId = (id) => {
     setToEditEmployeeId(id)
-    console.log("editing id: ", id);
     setToShowEmployeePopup(true)
   }
 
@@ -56,8 +54,9 @@ function Home() {
       :
       null
     }
-      <div>
-        <Button onClick={addEmployeeClickHandler}>add employee</Button>
+      <div className="add_employee_container">
+        <MdAddCircle onClick={addEmployeeClickHandler} size="2rem"/>
+        <span>Add employee</span>
       </div>
      {toRender}
     </>
