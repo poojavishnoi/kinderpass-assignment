@@ -1,30 +1,31 @@
 export const authReducer = (state, { type, payload }) => {
   switch (type) {
-    case "INIT_AUTH":
-      return {
+    case "AUTH_INIT":
+      return{
         ...state,
-        loading: true,
-        user: null,
+        message:"",
         error: "",
-      };
+        user:null
+      }
     case "AUTH_SUCCESS":
       return {
         ...state,
-        loading: false,
+        message: "Saved successfully",
+        error:'',
         user: payload,
       };
     case "AUTH_FAIL":
       return {
         ...state,
-        loading: false,
         error: payload,
+        message:''
       };
-
     case "LOGOUT":
       return {
         ...state,
         user: null,
         error: "",
+        message:''
       };
     default:
       throw new Error("Unhandled action type");

@@ -10,7 +10,7 @@ const initialState = {
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [{ user, error, loading }, dispatch] = useReducer(
+  const [{ user, error, message }, dispatch] = useReducer(
     authReducer,
     initialState
   );
@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, error, loading, dispatch }}>
+    <AuthContext.Provider value={{ user, error, message, dispatch }}>
       {children}
     </AuthContext.Provider>
   );
