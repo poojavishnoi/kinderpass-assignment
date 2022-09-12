@@ -1,5 +1,4 @@
 export const employeeReducer = (state, { type, payload }) => {
-  console.log("employee reducer :: ", type)
   switch (type) {
     case "ADD_EMP":
       let toAddEmployeeId;
@@ -24,7 +23,6 @@ export const employeeReducer = (state, { type, payload }) => {
       
     case "UPDATE":
       let index = state.employee.findIndex((ele) => ele.id === payload.id);
-      console.log(index);
       if(index > -1){
         const employeeList = [...state.employee];
         employeeList[index] = {...payload};
