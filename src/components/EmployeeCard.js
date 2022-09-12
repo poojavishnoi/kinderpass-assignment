@@ -1,20 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/employeeCard.css";
 import { AiFillDelete } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
 import login from "../assests/login.jpg";
 import { useEmployee } from "../context/employee-context";
+import EmployeeModal from "./EmployeeModal";
 
 export function EmployeeCard({ data }) {
-  const { dispatch } = useEmployee();
+  const { empDispatch } = useEmployee();
+  const [toShowEmployeePopup, setToShowEmployeePopup] = useState(false);
+
+  const editEmployeeClickHandler = () => {
+    console.log("editing employee")
+    setToShowEmployeePopup(true);
+  };
+
+  const closeEmployeeClickHandler = () => {
+    setToShowEmployeePopup(false);
+  };
+
+  const deleteHandler = () => {
+    empDispatch({
+      type: "DLT_EMP",
+      payload: data.id,
+    });
+  };
+
   return (
     <>
+      <EmployeeModal
+        data={data}
+        toShow={toShowEmployeePopup}
+        onClose={closeEmployeeClickHandler}
+      />
+
       <div className="employee_card">
         <img src={login} alt="thumbnail" />
 
         <h3>
           {data.name}
-          <span>: 1</span>
+          <span>:{data.id}</span>
         </h3>
         <p>Address: {data.address}</p>
         <p>DOB: {data.dob}</p>
@@ -22,14 +47,13 @@ export function EmployeeCard({ data }) {
         <p>city: {data.city}</p>
 
         <div className="card_icons">
-          <MdEdit className="card_icon" size="1.5rem" />
+          <MdEdit
+            onClick={editEmployeeClickHandler}
+            className="card_icon"
+            size="1.5rem"
+          />
           <AiFillDelete
-            onClick={() =>
-              dispatch({
-                type: "DLT_EMP",
-                payload: data,
-              })
-            }
+            onClick={deleteHandler}
             className="card_icon"
             size="1.5rem"
           />
