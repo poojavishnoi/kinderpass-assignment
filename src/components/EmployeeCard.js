@@ -1,22 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "../style/employeeCard.css";
 import { AiFillDelete } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
 import login from "../assests/login.jpg";
 import { useEmployee } from "../context/employee-context";
-import EmployeeModal from "./EmployeeModal";
 
 export function EmployeeCard({ data, onEdit }) {
   const { empDispatch } = useEmployee();
-  // const [toShowEmployeePopup, setToShowEmployeePopup] = useState(false);
 
   const editEmployeeClickHandler = (id) => {
     onEdit(id)
   };
-
-  // const closeEmployeeClickHandler = () => {
-  //   setToShowEmployeePopup(false);
-  // };
 
   const deleteHandler = () => {
     empDispatch({
@@ -24,8 +18,6 @@ export function EmployeeCard({ data, onEdit }) {
       payload: data.id,
     });
   };
-
-  // console.log("toShowEmployeePopup :: ",toShowEmployeePopup)
 
   return (
     <>
