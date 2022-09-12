@@ -1,14 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import { useEmployee } from "../context/employee-context";
 import login from "../assests/login.jpg";
 import "../style/signup.css";
+import "react-toastify/dist/ReactToastify.min.css";
+import { toast, ToastContainer } from "react-toastify";
+
 
 function Signup() {
-  const { dispatch } = useAuth();
+  const { error, message, dispatch } = useAuth();
   const { employee} = useEmployee()
   const navigate = useNavigate();
+
+  useEffect(() => {
+      let error = "";
+      if (error) {
+      toast.error(`${error}`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }else if(message){
+      toast.success(`${message}`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
+
+  }, [error, message, dispatch]);
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +47,7 @@ function Signup() {
   const [dob, setDob] = useState("");
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
+
 
   const uploadData = () => {
     dispatch({
@@ -113,6 +145,18 @@ function Signup() {
 
         
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
