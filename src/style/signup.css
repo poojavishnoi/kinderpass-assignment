@@ -38,11 +38,12 @@
 
 .signup_form{
   display: flex;
-  max-height: 28rem;
+  max-height: 26rem;
   width: 80%;
   flex-wrap: wrap;
   flex-direction: column;
 }
+
 
 .signup_form input{
   margin: 0.3rem 0 1rem 0;
