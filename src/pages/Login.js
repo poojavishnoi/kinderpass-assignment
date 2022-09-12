@@ -9,31 +9,25 @@ import { toast, ToastContainer } from "react-toastify";
 function Login() {
   const { user, error, message, dispatch } = useAuth();
   const navigate = useNavigate();
+ 
+  const toastStyle = {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (error) {
-      toast.error(`${error}`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error(`${error}`,toastStyle);
     }else if(message){
-      toast.success(`${message}`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success(`${message}`,toastStyle);
     }
   }, [error, message]);
 
