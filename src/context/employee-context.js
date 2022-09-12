@@ -8,13 +8,13 @@ const initialState = {
 const EmployeeContext = createContext();
 
 const EmployeeProvider = ({ children }) => {
-  const [{employee}, dispatch] = useReducer(
+  const [{ employee}, empDispatch] = useReducer(
     employeeReducer,
     initialState
   );
 
   return (
-    <EmployeeContext.Provider value={{ employee, dispatch }}>
+    <EmployeeContext.Provider value={{  employee, empDispatch }}>
       {children}
     </EmployeeContext.Provider>
   );
