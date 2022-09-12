@@ -55,6 +55,7 @@ function Login() {
             <input
               type="text"
               required
+              value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -66,6 +67,7 @@ function Login() {
               type="password"
               required
               pattern=".{6,}"
+              value={password}
               title="6 characters minimum"
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -75,6 +77,7 @@ function Login() {
             <br />
           </div>
           <input className="register_btn" type="submit" value="Login"></input>
+          <button>Login</button>
         </form>
       </div>
 
