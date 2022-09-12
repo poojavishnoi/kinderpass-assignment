@@ -22,7 +22,7 @@ function Signup() {
       type: "AUTH_SUCCESS",
       payload: { name, email, password, address, dob, company, employee },
     });
-    return navigate("/login");
+    navigate("/login");
   };
 
   return (
