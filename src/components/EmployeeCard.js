@@ -6,18 +6,17 @@ import login from "../assests/login.jpg";
 import { useEmployee } from "../context/employee-context";
 import EmployeeModal from "./EmployeeModal";
 
-export function EmployeeCard({ data }) {
+export function EmployeeCard({ data, onEdit }) {
   const { empDispatch } = useEmployee();
-  const [toShowEmployeePopup, setToShowEmployeePopup] = useState(false);
+  // const [toShowEmployeePopup, setToShowEmployeePopup] = useState(false);
 
-  const editEmployeeClickHandler = () => {
-    console.log("editing employee")
-    setToShowEmployeePopup(true);
+  const editEmployeeClickHandler = (id) => {
+    onEdit(id)
   };
 
-  const closeEmployeeClickHandler = () => {
-    setToShowEmployeePopup(false);
-  };
+  // const closeEmployeeClickHandler = () => {
+  //   setToShowEmployeePopup(false);
+  // };
 
   const deleteHandler = () => {
     empDispatch({
@@ -26,13 +25,10 @@ export function EmployeeCard({ data }) {
     });
   };
 
+  // console.log("toShowEmployeePopup :: ",toShowEmployeePopup)
+
   return (
     <>
-      <EmployeeModal
-        data={data}
-        toShow={toShowEmployeePopup}
-        onClose={closeEmployeeClickHandler}
-      />
 
       <div className="employee_card">
         <img src={login} alt="thumbnail" />
@@ -48,7 +44,7 @@ export function EmployeeCard({ data }) {
 
         <div className="card_icons">
           <MdEdit
-            onClick={editEmployeeClickHandler}
+            onClick={() => editEmployeeClickHandler(data.id)}
             className="card_icon"
             size="1.5rem"
           />

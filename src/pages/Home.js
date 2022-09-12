@@ -8,18 +8,25 @@ import { Button } from "react-bootstrap";
 function Home() {
   const { employee } = useEmployee();
   const [toShowEmployeePopup, setToShowEmployeePopup] = useState(false)
+  const [toEditEmployeeId, setToEditEmployeeId] = useState(null)
   
 
   const addEmployeeClickHandler = () => {
     console.log("adding employee");
+    setToEditEmployeeId(null)
     setToShowEmployeePopup(true)
+    
   }
 
   const closeEmployeeClickHandler = () => setToShowEmployeePopup(false)
 
+  const setEmployeeId = (id) => {
+    setToEditEmployeeId(id)
+    console.log("editing id: ", id);
+    setToShowEmployeePopup(true)
+  }
+
   let toRender;
-
-
   if (employee.length === 0 ) {
     toRender = (
       <div className="empty">
@@ -35,7 +42,7 @@ function Home() {
     toRender = (
       <div className="home_container">
           {employee.map((data, index) => {
-            return <EmployeeCard key={index} data={data} />;
+            return <EmployeeCard key={index} onEdit={setEmployeeId} data={data}   />;
           })}
         </div>
     )
@@ -43,7 +50,12 @@ function Home() {
 
   return (
     <>
-      <EmployeeModal data={null} toShow={toShowEmployeePopup} onClose={closeEmployeeClickHandler}/>
+    {
+      toShowEmployeePopup ?
+      <EmployeeModal editEmployeeId={toEditEmployeeId} toShow={toShowEmployeePopup} onClose={closeEmployeeClickHandler}/>
+      :
+      null
+    }
       <div>
         <Button onClick={addEmployeeClickHandler}>add employee</Button>
       </div>

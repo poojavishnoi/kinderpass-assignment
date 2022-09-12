@@ -4,9 +4,10 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useEmployee } from "../context/employee-context";
 
-function EmployeeModal({ toShow, onClose, data }) {
-  console.log(data);
+function EmployeeModal({ toShow, onClose, editEmployeeId }) {
   const { employee, empDispatch } = useEmployee();
+  
+  const [data] = employee.filter((ele) => ele.id === editEmployeeId);
 
   const [email, setEmail] = useState(data ? data.email :  "");
   const [address, setAddress] = useState(data ?  data.address : "");
@@ -16,7 +17,7 @@ function EmployeeModal({ toShow, onClose, data }) {
   const [number, setNumber] = useState(data ?  data.number :  "");
 
   const handleSave = () => {
-    if (!data) {
+    if (editEmployeeId === null) {
       empDispatch({
         type: "ADD_EMP",
         payload: {
@@ -34,7 +35,7 @@ function EmployeeModal({ toShow, onClose, data }) {
       empDispatch({
         type: "UPDATE",
         payload: {
-          id: data.id,
+          id: editEmployeeId,
           email,
           address,
           dob,
