@@ -15,6 +15,7 @@ function Signup() {
 
   useEffect(() => {
       let error = "";
+      let message = "";
       if (error) {
       toast.error(`${error}`, {
         position: "top-right",
